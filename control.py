@@ -30,6 +30,10 @@ class Move():
 
     def movR():
         motor_left.moveF()
+        
+    def stop():
+        motor_right.stop()
+        motor_left.stop()
 
 def add_hook_keyboard():
     keyboard.on_press_key("w", Move.movF)
