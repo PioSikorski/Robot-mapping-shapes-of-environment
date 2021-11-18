@@ -2,7 +2,9 @@ from math import pi, cos, sin, asin
 import RPi.GPIO as GPIO
 import time
 
-from control import Move, handle_imu
+from imu import Imu
+from control import Move
+from control import handle_imu
 from consts import R_BIG_WHEEL_DIAMETER, ENCODER_GEAR_NUMBER_OF_TEETH, R_BIG_WHEELS_CENTERS_DISTANCE
 
 distance_per_rotation = 2 * pi * R_BIG_WHEEL_DIAMETER / 2 / ENCODER_GEAR_NUMBER_OF_TEETH # odlebłość na jeden ząb
@@ -57,11 +59,12 @@ class Encoder:
 if __name__=="__main__":
     left_encorer_sensor_gpio_pin_number = 19
     right_encorer_sensor_gpio_pin_number = 26
-    try:
-        enkoder = Encoder(left_encorer_sensor_gpio_pin_number, right_encorer_sensor_gpio_pin_number)
-        enkoder.show_state()
-        Move.movF()
-        time.sleep(5)
-        Move.stop()
-    except KeyboardInterrupt:
-        sys.exit()
+    imu = Imu('y')
+    imu.calibrate()
+    angle = 0
+    handle_imu(angle, imu)
+    enkoder = Encoder(left_encorer_sensor_gpio_pin_number, right_encorer_sensor_gpio_pin_number)
+    Move.movF()
+    time.sleep(3)
+    Move.stop()
+    enkoder.store_details()

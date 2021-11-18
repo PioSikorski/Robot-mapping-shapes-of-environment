@@ -27,9 +27,11 @@ class Move():
 
     def movL():
         motor_right.moveF()
+        motor_left.stop()
 
     def movR():
         motor_left.moveF()
+        motor_right.stop()
         
     def stop():
         motor_right.stop()
