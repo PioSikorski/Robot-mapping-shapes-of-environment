@@ -65,6 +65,7 @@ if __name__=="__main__":
     handle_imu(angle, imu)
     enkoder = Encoder(left_encorer_sensor_gpio_pin_number, right_encorer_sensor_gpio_pin_number)
     Move.movF()
+    print(enkoder.show_state())
     time.sleep(3)
     Move.stop()
     enkoder.store_details()
