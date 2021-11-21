@@ -1,8 +1,13 @@
 import socket
 import threading
+import time
 
+import control
+from imu import Imu
+from control import handle_imu
+from enkoder import Encoder
 from control import Move
-from consts import PI_IP_ADDRESS, SERVER_PORT
+from consts import PI_IP_ADDRESS, SERVER_PORT, LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN
 
 steer_cmds = {
     'f': Move.movF,
@@ -51,5 +56,20 @@ if __name__=="__main__":
     server = Server()
     try:
         server.serve()
+        enkoder = Encoder(LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN)
+        imu = Imu('y')
+        imu.calibrate()
+        angle = 0
+        x = 0
+
+        while True:
+            angle = handle_imu(angle, imu)
+            enkoder.update(angle)
+            time.sleep(0.01)
+            if x%500 == 0: 
+                enkoder.show_sxtate()
+            x += 1
+
     except KeyboardInterrupt:
         server.stop_serving()
+        enkoder.store_details()

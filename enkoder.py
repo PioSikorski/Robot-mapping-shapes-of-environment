@@ -25,6 +25,7 @@ class Wheel:
         if len(self.encoder_states_history) > 0:
             if self.encoder_states_history[-1] == 1 and state == 0:
                 self.state_changes += 1
+                print(f"self.state_changes {self.state_changes}")
                 self.s += distance_per_rotation
                 self.x.append(self.x[-1] + distance_per_rotation * cos(angle * pi / 180))
                 self.y.append(self.y[-1] + distance_per_rotation * sin(angle * pi / 180))
@@ -59,13 +60,4 @@ class Encoder:
 if __name__=="__main__":
     left_encorer_sensor_gpio_pin_number = 19
     right_encorer_sensor_gpio_pin_number = 26
-    imu = Imu('y')
-    imu.calibrate()
-    angle = 0
-    handle_imu(angle, imu)
     enkoder = Encoder(left_encorer_sensor_gpio_pin_number, right_encorer_sensor_gpio_pin_number)
-    Move.movF()
-    print(enkoder.show_state())
-    time.sleep(3)
-    Move.stop()
-    enkoder.store_details()
