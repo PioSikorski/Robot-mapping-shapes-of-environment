@@ -67,7 +67,7 @@ if __name__=="__main__":
             enkoder.update(angle)
             time.sleep(0.01)
             if x%500 == 0: 
-                enkoder.show_sxtate()
+                enkoder.show_state()
             x += 1
 
     except KeyboardInterrupt:

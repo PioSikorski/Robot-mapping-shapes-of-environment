@@ -5,7 +5,7 @@ import time
 from imu import Imu
 from control import Move
 from control import handle_imu
-from consts import R_BIG_WHEEL_DIAMETER, ENCODER_GEAR_NUMBER_OF_TEETH, R_BIG_WHEELS_CENTERS_DISTANCE
+from consts import R_BIG_WHEEL_DIAMETER, ENCODER_GEAR_NUMBER_OF_TEETH, R_BIG_WHEELS_CENTERS_DISTANCE, LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN
 
 distance_per_rotation = 2 * pi * R_BIG_WHEEL_DIAMETER / 2 / ENCODER_GEAR_NUMBER_OF_TEETH # odlebłość na jeden ząb
 
@@ -30,6 +30,7 @@ class Wheel:
                 self.x.append(self.x[-1] + distance_per_rotation * cos(angle * pi / 180))
                 self.y.append(self.y[-1] + distance_per_rotation * sin(angle * pi / 180))
         self.encoder_states_history.append(state)
+        print(state)
         return angle
 
 class Encoder:
@@ -58,6 +59,16 @@ class Encoder:
             f2.close()
 
 if __name__=="__main__":
-    left_encorer_sensor_gpio_pin_number = 19
-    right_encorer_sensor_gpio_pin_number = 26
-    enkoder = Encoder(left_encorer_sensor_gpio_pin_number, right_encorer_sensor_gpio_pin_number)
+    try:
+        enkoder = Encoder(LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN)
+        imu = Imu('y')
+        imu.calibrate()
+        angle = 0
+        
+        while True:
+            angle = handle_imu(angle, imu)
+            enkoder.update(angle)
+            # enkoder.show_state()
+
+    except KeyboardInterrupt:
+        exit()
