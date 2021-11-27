@@ -1,12 +1,14 @@
+from math import cos, sin
+
 from matplotlib import pyplot as plt
 
 
 def calculate_x_from_distance_and_angle(distance: float, angle: float) -> float:
-    pass
+    return cos(angle) * distance
 
 
 def calculate_y_from_distance_and_angle(distance: float, angle: float) -> float:
-    pass
+    return 
 
 
 def draw(input_data -> list):

@@ -65,9 +65,13 @@ class Server:
                 self.steer_cmds.get(steer_cmd, Move.stop)()
 
     def stop_serving(self):
+        print(1)
         self.t.stop()
+        print(2)
         self.t.join()
+        print(3)
         self.conn.close()
+        print(4)
 
 
 if __name__ == "__main__":
