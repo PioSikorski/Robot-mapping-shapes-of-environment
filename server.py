@@ -2,19 +2,11 @@ import socket
 import threading
 import time
 
-import control
+from control import Move
 from imu import Imu
 from enkoder import Encoder
 from control import Move
 from consts import PI_IP_ADDRESS, SERVER_PORT, LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN
-
-# steer_cmds = {
-#     'f': Move.movF,
-#     'b': Move.movB,
-#     'r': Move.movR,
-#     'l': Move.movL,
-#     's': Move.stop
-# }
 
 
 class Server:
@@ -33,7 +25,7 @@ class Server:
         s.listen(1)
         self.conn, self.addr = s.accept()
         self.t = threading.Thread(target=self._serve)
-        
+
         self.m = Move((25, 8, 7), (14, 15, 18))
         self.steer_cmds = {
             'f': self.m.movF,
@@ -44,7 +36,6 @@ class Server:
         }
 
     def serve(self):
-
         self.m.initialize_motors()
         self.t.start()
         print(f"Socket Up and running with a connection from {self.addr}")

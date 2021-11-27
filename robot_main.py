@@ -15,6 +15,7 @@ from server import Server
 GPIO.setwarnings(False)
 
 if __name__ == "__main__":
+    measures = []
     try:
         # sensors should be initialized before operator is able to move robot
         imu = Imu('y')
@@ -30,21 +31,11 @@ if __name__ == "__main__":
         server.serve()
 
         x = 0
-        measures = []
 
         while True:
             imu.update_angle()
             enkoder.update(imu.angle)
 
-            # measures.append(
-            #     {
-            #         "robot_x": (enkoder.left_wheel.x[-1] + enkoder.right_wheel.x[-1])/2,
-            #         "robot_y": (enkoder.left_wheel.y[-1] + enkoder.right_wheel.y[-1])/2,
-            #         "left": left_dist_sensor.measure(),
-            #         "middle": middle_dist_sensor.measure(),
-            #         "right": right_dist_sensor.measure()
-            #     }
-            # )
             measures.append(
                 [
                     (enkoder.left_wheel.x[-1] + enkoder.right_wheel.x[-1])/2,
@@ -59,11 +50,13 @@ if __name__ == "__main__":
             x += 1
 
     except KeyboardInterrupt:
-        with open('res.csv', 'w', newline='') as f:
-            w = csv.writer(f)
-            w.writerow(['robot_x', 'robot_y', 'left', 'middle', 'right'])
-            for measure in measures:
-                w.writerow(measure)
+        if measures:
+            with open('res.csv', 'w', newline='') as f:
+                w = csv.writer(f)
+                w.writerow(['robot_x', 'robot_y', 'left', 'middle', 'right'])
+                for measure in measures:
+                    w.writerow(measure)
+        else:
+            print('nie ma')
 
-        # enkoder.store_details()
         server.stop_serving()
