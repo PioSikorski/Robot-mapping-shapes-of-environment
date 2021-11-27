@@ -10,36 +10,42 @@ import keyboard
 # curses.noecho()
 # curses.cbreak()
 # screen.keypad(True)
-#GPIO.setwarnings(False)
+# GPIO.setwarnings(False)
 
-# motor_right = Motor(14, 15, 18)
-# motor_left = Motor(25,8,7)
+# self.motor_right = Motor(14, 15, 18)
+# self.motor_left = Motor(25,8,7)
 
 
 class Move():
-    def initialize_motors():
-        motor_left = Motor(25, 8, 7)
-        motor_right = Motor(14, 15, 18)
+    def __init__(self, left_wheel_params, right_wheel_params):
+        self.left_wheel_params = left_wheel_params
+        self.right_wheel_params = right_wheel_params
+        self.motor_left = None
+        self.motor_right = None
 
-    def movF():
-        motor_right.moveF()
-        motor_left.moveF()
+    def initialize_motors(self):
+        self.motor_left = Motor(*self.left_wheel_params)
+        self.motor_right = Motor(*self.right_wheel_params)
 
-    def movB():
-        motor_right.moveB()
-        motor_left.moveB()
+    def movF(self):
+        self.motor_right.moveF()
+        self.motor_left.moveF()
 
-    def movL():
-        motor_right.moveF()
-        motor_left.stop()
+    def movB(self):
+        self.motor_right.moveB()
+        self.motor_left.moveB()
 
-    def movR():
-        motor_left.moveF()
-        motor_right.stop()
+    def movL(self):
+        self.motor_right.moveF()
+        self.motor_left.stop()
 
-    def stop():
-        motor_right.stop()
-        motor_left.stop()
+    def movR(self):
+        self.motor_left.moveF()
+        self.motor_right.stop()
+
+    def stop(self):
+        self.motor_right.stop()
+        self.motor_left.stop()
 
 
 def add_hook_keyboard():
@@ -84,8 +90,8 @@ if __name__ == "__main__":
             add_hook_keyboard()
 
     except KeyboardInterrupt:
-        motor_left.stop()
-        motor_right.stop()
+        self.motor_left.stop()
+        self.motor_right.stop()
 
     finally:
         curses.nocbreak()
