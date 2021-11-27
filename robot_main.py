@@ -35,17 +35,18 @@ if __name__ == "__main__":
         while True:
             imu.update_angle()
             enkoder.update(imu.angle)
-
-            measures.append(
-                [
-                    (enkoder.left_wheel.x[-1] + enkoder.right_wheel.x[-1])/2,
-                    (enkoder.left_wheel.y[-1] + enkoder.right_wheel.y[-1])/2,
-                    left_dist_sensor.measure(),
-                    middle_dist_sensor.measure(),
-                    right_dist_sensor.measure()
-                ]
-            )
+            if x % 50 == 0:
+                measures.append(
+                    [
+                        (enkoder.left_wheel.x[-1] + enkoder.right_wheel.x[-1])/2,
+                        (enkoder.left_wheel.y[-1] + enkoder.right_wheel.y[-1])/2,
+                        left_dist_sensor.measure(),
+                        middle_dist_sensor.measure(),
+                        right_dist_sensor.measure()
+                    ]
+                )
             if x % 500 == 0:
+                print(x)
                 enkoder.show_state()
             x += 1
 
