@@ -58,17 +58,6 @@ class Encoder:
             f2.close()
 
 if __name__=="__main__":
-    try:
-        enkoder = Encoder(LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN)
-        imu = Imu('y')
-        imu.calibrate()
-        angle = 0
-        
-        while True:
-            angle = handle_imu(angle, imu)
-            time.sleep(0.03)
-            enkoder.update(angle)
-            # enkoder.show_state()
-
-    except KeyboardInterrupt:
-        exit()
+    left_encorer_sensor_gpio_pin_number = 19
+    right_encorer_sensor_gpio_pin_number = 26
+    enkoder = Encoder(left_encorer_sensor_gpio_pin_number, right_encorer_sensor_gpio_pin_number)

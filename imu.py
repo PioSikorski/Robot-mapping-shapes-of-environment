@@ -32,22 +32,26 @@ class Imu(FaBo9Axis_MPU9250.MPU9250):
         self.last_measurement_time = new_measurement_time
         return yaw_change*dt
 
-if __name__ == "__main__":
-    try:
-        imu = Imu('y')
-        imu.calibrate()
+    def handle_imu(self):
         angle = 0
-        while True:
-            d_angle = imu.get_angle_change()
-            if d_angle is None:
-                continue
+        d_angle = self.get_angle_change()
+        if d_angle is not None:
             angle += d_angle
             if angle > 360:
                 angle -= 360
             if angle < -360:
                 angle += 360
+        return angle
+
+
+if __name__ == "__main__":
+    try:
+        imu = Imu('y')
+        imu.calibrate()
+        while True:
+            angle = imu.handle_imu()
             print(angle)
-            time.sleep(0.5)
+            time.sleep(0.1)
 
     except KeyboardInterrupt:
         print("User stop")
