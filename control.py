@@ -72,7 +72,6 @@ def handle_imu(angle, imu):
             angle -= 360
         if angle < -360:
             angle += 360
-        print(angle)
     return angle
 
 if __name__=="__main__":

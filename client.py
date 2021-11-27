@@ -27,6 +27,7 @@ if __name__=="__main__":
             message = messages.get(c)
             if message is not None:
                 s.send(message.encode())
+            
     finally:
         s.close()
         curses.nocbreak()

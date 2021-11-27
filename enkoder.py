@@ -5,7 +5,7 @@ import time
 from imu import Imu
 from control import Move
 from control import handle_imu
-from consts import R_BIG_WHEEL_DIAMETER, ENCODER_GEAR_NUMBER_OF_TEETH, R_BIG_WHEELS_CENTERS_DISTANCE
+from consts import R_BIG_WHEEL_DIAMETER, ENCODER_GEAR_NUMBER_OF_TEETH, R_BIG_WHEELS_CENTERS_DISTANCE, LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN
 
 distance_per_rotation = 2 * pi * R_BIG_WHEEL_DIAMETER / 2 / ENCODER_GEAR_NUMBER_OF_TEETH # odlebłość na jeden ząb
 
@@ -25,10 +25,12 @@ class Wheel:
         if len(self.encoder_states_history) > 0:
             if self.encoder_states_history[-1] == 1 and state == 0:
                 self.state_changes += 1
+                print(f"self.state_changes {self.state_changes}")
                 self.s += distance_per_rotation
                 self.x.append(self.x[-1] + distance_per_rotation * cos(angle * pi / 180))
                 self.y.append(self.y[-1] + distance_per_rotation * sin(angle * pi / 180))
         self.encoder_states_history.append(state)
+        print(state)
         return angle
 
 class Encoder:
