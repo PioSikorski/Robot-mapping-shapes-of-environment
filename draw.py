@@ -1,14 +1,24 @@
-from math import cos, sin
+from math import cos, pi, sin
 
 from matplotlib import pyplot as plt
 
 
-def calculate_x_from_distance_and_angle(distance: float, angle: float) -> float:
-    return cos(angle) * distance
+def get_x_part(distance: float, angle: float) -> float:
+    """
+    @param distance: distance in meters
+    @param angle: angle in degrees
+    """
+    angle_in_radians = 2*pi * angle / 360
+    return cos(angle_in_radians) * distance
 
 
-def calculate_y_from_distance_and_angle(distance: float, angle: float) -> float:
-    return 
+def get_y_part(distance: float, angle: float) -> float:
+    """
+    @param distance: distance in meters
+    @param angle: angle in degrees
+    """
+    angle_in_radians = 2*pi * angle / 360
+    return sin(angle_in_radians) * distance
 
 
 def draw(input_data -> list):
@@ -24,3 +34,4 @@ def draw(input_data -> list):
         for robot_x, robot_y, left, middle, right in measure:
             robot_xs.append(robot_x)
             robot_ys.append(robot_y)
+            left_xs.append(robot_x)

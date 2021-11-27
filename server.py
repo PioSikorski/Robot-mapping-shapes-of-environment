@@ -50,13 +50,15 @@ class Server:
             's': self.m.stop
         }
 
+        self.stopped = False
+
     def serve(self):
         self.m.initialize_motors()
         self.t.start()
         print(f"Socket Up and running with a connection from {self.addr}")
 
     def _serve(self):
-        while True:
+        while not self.stopped:
             rcvdData = self.conn.recv(1024).decode()
 
             if rcvdData:
@@ -65,6 +67,8 @@ class Server:
                 self.steer_cmds.get(steer_cmd, Move.stop)()
 
     def stop_serving(self):
+        print(0)
+        self.stopped = True
         print(1)
         self.t.stop()
         print(2)
