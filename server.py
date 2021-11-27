@@ -8,13 +8,13 @@ from enkoder import Encoder
 from control import Move
 from consts import PI_IP_ADDRESS, SERVER_PORT, LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN
 
-steer_cmds = {
-    'f': Move.movF,
-    'b': Move.movB,
-    'r': Move.movR,
-    'l': Move.movL,
-    's': Move.stop
-}
+# steer_cmds = {
+#     'f': Move.movF,
+#     'b': Move.movB,
+#     'r': Move.movR,
+#     'l': Move.movL,
+#     's': Move.stop
+# }
 
 
 class Server:
@@ -34,7 +34,7 @@ class Server:
         self.conn, self.addr = s.accept()
         self.t = threading.Thread(target=self._serve)
         
-        self.m = Move((14, 15, 18), (25, 8, 7))
+        self.m = Move((25, 8, 7), (14, 15, 18))
         self.steer_cmds = {
             'f': self.m.movF,
             'b': self.m.movB,
