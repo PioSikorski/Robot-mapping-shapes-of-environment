@@ -3,8 +3,6 @@ import RPi.GPIO as GPIO
 import time
 
 from imu import Imu
-from control import Move
-from control import handle_imu
 from consts import R_BIG_WHEEL_DIAMETER, ENCODER_GEAR_NUMBER_OF_TEETH, R_BIG_WHEELS_CENTERS_DISTANCE, LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN
 
 distance_per_rotation = 2 * pi * R_BIG_WHEEL_DIAMETER / 2 / ENCODER_GEAR_NUMBER_OF_TEETH # odlebłość na jeden ząb

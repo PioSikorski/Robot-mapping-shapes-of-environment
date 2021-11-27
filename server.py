@@ -35,6 +35,7 @@ class Server:
         self.t = threading.Thread(target=self._serve)
 
     def serve(self):
+        Move.initialize_motors()
         self.t.start()
         print(f"Socket Up and running with a connection from {self.addr}")
 

@@ -3,12 +3,16 @@ import socket
 import threading
 import time
 
+import RPi.GPIO as GPIO
+
 from consts import PI_IP_ADDRESS, SERVER_PORT, LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN
 from enkoder import Encoder
-from imu import Imu
-from points import Point, get_midpoint
-from server import Server
 from hcsh04 import DistanceSensor
+from imu import Imu
+from server import Server
+
+
+GPIO.setwarnings(False)
 
 if __name__ == "__main__":
     try:
@@ -60,6 +64,6 @@ if __name__ == "__main__":
             w.writerow(['robot_x', 'robot_y', 'left', 'middle', 'right'])
             for measure in measures:
                 w.writerow(measure)
-                
-        #enkoder.store_details()
+
+        # enkoder.store_details()
         server.stop_serving()
