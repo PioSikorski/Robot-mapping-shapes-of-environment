@@ -48,6 +48,7 @@ if __name__ == "__main__":
     try:
         imu = Imu('y')
         imu.calibrate()
+        angle = 0
         while True:
             angle = imu.handle_imu()
             print(angle)
