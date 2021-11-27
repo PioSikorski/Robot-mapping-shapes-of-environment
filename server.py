@@ -55,19 +55,5 @@ if __name__=="__main__":
     server = Server()
     try:
         server.serve()
-        enkoder = Encoder(LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN)
-        imu = Imu('y')
-        imu.calibrate()
-        x = 0
-
-        while True:
-            imu.update_angle()
-            enkoder.update(imu.angle)
-            time.sleep(0.01)
-            if x%500 == 0: 
-                enkoder.show_state()
-            x += 1
-
     except KeyboardInterrupt:
-        enkoder.store_details()
         server.stop_serving()
