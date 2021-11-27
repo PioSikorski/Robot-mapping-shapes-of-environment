@@ -1,8 +1,10 @@
 import socket
 import threading
 
-from control import Move
-from consts import PI_IP_ADDRESS, SERVER_PORT
+import control
+from enkoder import Encoder
+from control import Move, handle_imu
+from consts import PI_IP_ADDRESS, SERVER_PORT, LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN
 
 steer_cmds = {
     'f': Move.movF,
@@ -51,5 +53,10 @@ if __name__=="__main__":
     server = Server()
     try:
         server.serve()
+        enkoder = Encoder(LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN)
+        while True:
+            enkoder.update()
+            enkoder.show_state()
+
     except KeyboardInterrupt:
         server.stop_serving()

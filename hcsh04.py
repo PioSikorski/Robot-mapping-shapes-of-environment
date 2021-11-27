@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 import time
-#from matplotlib import pyplot as plt
 
 
 print('Pomiar odleglosci')
@@ -8,10 +7,9 @@ print('Pomiar odleglosci')
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-#"RIGHT":{"echo":11,"trig":9} # line 14
 SENSORS = {"LEFT":{"echo":6,"trig":13},
-            "MIDDLE":{"echo":5,"trig":0},
-            "RIGHT":{"echo":11,"trig":9}}
+           "MIDDLE":{"echo":5,"trig":0},
+           "RIGHT":{"echo":11,"trig":9}}
 
 
 for k,v in SENSORS.items():
@@ -20,8 +18,8 @@ for k,v in SENSORS.items():
 
 measurment = []
 result = {"LEFT":[],
-            "MIDDLE":[],
-            "RIGHT":[]} #"RIGHT":[]
+          "MIDDLE":[],
+          "RIGHT":[]}
              
 def distance():
     

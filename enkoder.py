@@ -55,13 +55,8 @@ class Encoder:
             for x, y in zip(self.right_wheel.x, self.right_wheel.y):
                 f2.writelines(f'{x}, {y} \n')
             f2.close()
-
+0
 if __name__=="__main__":
     left_encorer_sensor_gpio_pin_number = 19
     right_encorer_sensor_gpio_pin_number = 26
     enkoder = Encoder(left_encorer_sensor_gpio_pin_number, right_encorer_sensor_gpio_pin_number)
-    Move.movF()
-    print(enkoder.show_state())
-    time.sleep(3)
-    Move.stop()
-    enkoder.store_details()
