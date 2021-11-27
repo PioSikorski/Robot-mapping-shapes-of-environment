@@ -71,5 +71,5 @@ if __name__=="__main__":
             x += 1
 
     except KeyboardInterrupt:
-        server.stop_serving()
         enkoder.store_details()
+        server.stop_serving()

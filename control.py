@@ -12,8 +12,8 @@ curses.cbreak()
 screen.keypad(True)
 GPIO.setwarnings(False)
 
-motor_left = Motor(14, 15, 18)
-motor_right = Motor(25,8,7)
+motor_right = Motor(14, 15, 18)
+motor_left = Motor(25,8,7)
 
 class Move():
 

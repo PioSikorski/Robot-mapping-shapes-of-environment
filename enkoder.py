@@ -30,7 +30,6 @@ class Wheel:
                 self.x.append(self.x[-1] + distance_per_rotation * cos(angle * pi / 180))
                 self.y.append(self.y[-1] + distance_per_rotation * sin(angle * pi / 180))
         self.encoder_states_history.append(state)
-        print(state)
         return angle
 
 class Encoder:
@@ -67,6 +66,7 @@ if __name__=="__main__":
         
         while True:
             angle = handle_imu(angle, imu)
+            time.sleep(0.03)
             enkoder.update(angle)
             # enkoder.show_state()
 
