@@ -1,6 +1,7 @@
 import time
 
 import FaBo9Axis_MPU9250
+from control import handle_imu
 
 
 class Imu(FaBo9Axis_MPU9250.MPU9250):
@@ -32,20 +33,25 @@ class Imu(FaBo9Axis_MPU9250.MPU9250):
         self.last_measurement_time = new_measurement_time
         return yaw_change*dt
 
+    def handle_imu(self):
+        angle = 0
+        d_angle = imu.get_angle_change()
+        if d_angle is not None:
+            angle += d_angle
+            if angle > 360:
+                angle -= 360
+            if angle < -360:
+                angle += 360
+        return angle
+
+
 if __name__ == "__main__":
     try:
         imu = Imu('y')
         imu.calibrate()
         angle = 0
         while True:
-            d_angle = imu.get_angle_change()
-            if d_angle is None:
-                continue
-            angle += d_angle
-            if angle > 360:
-                angle -= 360
-            if angle < -360:
-                angle += 360
+            angle = handle_imu()
             print(angle)
             time.sleep(0.5)
 

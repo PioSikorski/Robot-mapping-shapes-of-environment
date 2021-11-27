@@ -43,6 +43,10 @@ def distance():
     time.sleep(0.5)        
     return result
 
+def handle_data():
+
+    self.
+
 def write_result():
 
     for k,v in result.items():

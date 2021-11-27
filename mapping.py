@@ -25,6 +25,14 @@ with open('encoder_path_right_wheel.txt', 'r') as f2:
         yr.append(float(p[1]))
     f1.close()
 
+for x in range(len(xl)):
+    xl[x] = xl[x] * 100
+    print(xl[x])
+for y in range(len(yl)):
+    yl[y] = yl[y] * 100
+    print(yl[y])
+
+print(xl, yl)
 
 class Map:
 
@@ -36,7 +44,7 @@ class Map:
     def draw(self):
         robot_position = xl
         plt.plot(robot_position, yl)
-        plt.plot(xr, yr)
+        plt.plot(self.left, self.right)
         plt.legend(['lewe', 'prawe'])
         plt.show()
 
