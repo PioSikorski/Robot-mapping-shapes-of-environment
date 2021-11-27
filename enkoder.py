@@ -52,12 +52,11 @@ class Encoder:
         with open('encoder_path_left_wheel.txt', 'w') as f1:
             for x, y in zip(self.left_wheel.x, self.left_wheel.y):
                 f1.writelines(f'{x}, {y} \n')
-            f1.close()
+
         with open('encoder_path_right_wheel.txt', 'w') as f2:
             for x, y in zip(self.right_wheel.x, self.right_wheel.y):
                 f2.writelines(f'{x}, {y} \n')
-            f2.close()
-0
+            
 if __name__=="__main__":
     left_encorer_sensor_gpio_pin_number = 19
     right_encorer_sensor_gpio_pin_number = 26
