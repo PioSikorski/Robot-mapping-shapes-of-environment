@@ -1,5 +1,8 @@
 import RPi.GPIO as GPIO
 import time
+from math import sin, cos, pi
+
+from consts import SENSORS_ANGLE
 
 
 print('Pomiar odleglosci')
@@ -21,7 +24,11 @@ result = {"LEFT":[],
           "MIDDLE":[],
           "RIGHT":[]}
              
+<<<<<<< HEAD
 def distance():
+=======
+def distance(): 
+>>>>>>> fe7c0bd954bbba2141a855fa1722d1a40e124dfa
     for k,v in SENSORS.items():
         GPIO.output(v['trig'], True)
         time.sleep(0.00001)
@@ -38,12 +45,17 @@ def distance():
         print(k, distance)
         result[k].append(distance)
         
-
     time.sleep(0.5)        
     return result
 
+<<<<<<< HEAD
 def write_result():
     for k, v in result.items():
+=======
+
+def write_result():
+    for k,v in result.items():
+>>>>>>> fe7c0bd954bbba2141a855fa1722d1a40e124dfa
         with open(f"{k}_result_file.txt", 'w') as f:
             for el in v:
                 f.write(str(el) + "\n")
@@ -54,6 +66,7 @@ if __name__ == '__main__':
         while True:
             dist = distance()
             print(dist)
+            handle_data()
                 
     except KeyboardInterrupt:
         print('Stop klawiatura')

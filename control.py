@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 from motor import Motor
 import curses
 import time
-from imu import Imu
+import imu
 import keyboard
 
 screen = curses.initscr()
@@ -12,8 +12,8 @@ curses.cbreak()
 screen.keypad(True)
 GPIO.setwarnings(False)
 
-motor_left = Motor(14, 15, 18)
-motor_right = Motor(25,8,7)
+motor_right = Motor(14, 15, 18)
+motor_left = Motor(25,8,7)
 
 class Move():
 
@@ -64,26 +64,16 @@ def move_on_click2():
     elif keyboard.is_pressed("a"):
         Move.movL()
 
-def handle_imu(angle, imu):
-    d_angle = imu.get_angle_change()
-    if d_angle is not None:
-        angle += d_angle
-        if angle > 360:
-            angle -= 360
-        if angle < -360:
-            angle += 360
-    return angle
-
 if __name__=="__main__":
     try:
-        imu = Imu('y')
+        imu = imu.Imu('y')
         imu.calibrate()
         angle = 0
         add_hook_keyboard()
 
         while True:
-            handle_imu(angle, imu)
-            move_on_click()
+            imu.handle_imu()
+            add_hook_keyboard()
 
             
     except KeyboardInterrupt:

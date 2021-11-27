@@ -30,7 +30,6 @@ class Wheel:
                 self.x.append(self.x[-1] + distance_per_rotation * cos(angle * pi / 180))
                 self.y.append(self.y[-1] + distance_per_rotation * sin(angle * pi / 180))
         self.encoder_states_history.append(state)
-        print(state)
         return angle
 
 class Encoder:
@@ -56,7 +55,12 @@ class Encoder:
         with open('encoder_path_right_wheel.txt', 'w') as f2:
             for x, y in zip(self.right_wheel.x, self.right_wheel.y):
                 f2.writelines(f'{x}, {y} \n')
+<<<<<<< HEAD
             
+=======
+            f2.close()
+
+>>>>>>> fe7c0bd954bbba2141a855fa1722d1a40e124dfa
 if __name__=="__main__":
     left_encorer_sensor_gpio_pin_number = 19
     right_encorer_sensor_gpio_pin_number = 26
