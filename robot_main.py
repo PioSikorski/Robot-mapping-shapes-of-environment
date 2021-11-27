@@ -52,6 +52,7 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         if measures:
             with open('res.csv', 'w', newline='') as f:
+                print('no pisze')
                 w = csv.writer(f)
                 w.writerow(['robot_x', 'robot_y', 'left', 'middle', 'right'])
                 for measure in measures:
