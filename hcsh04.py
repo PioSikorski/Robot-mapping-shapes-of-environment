@@ -24,8 +24,7 @@ result = {"LEFT":[],
           "MIDDLE":[],
           "RIGHT":[]}
              
-def distance():
-    
+def distance(): 
     for k,v in SENSORS.items():
         GPIO.output(v['trig'], True)
         time.sleep(0.00001)
@@ -42,22 +41,11 @@ def distance():
         print(k, distance)
         result[k].append(distance)
         
-
     time.sleep(0.5)        
     return result
 
-def handle_data():
-
-    res = result.items()
-    print(res)
-    for k, v in result.items():
-        x = []
-        y = []
-        #x.append(v * sin(SENSORS_ANGLE * pi / 180))
-        print(v)
 
 def write_result():
-
     for k,v in result.items():
         with open(f"{k}_result_file.txt", 'w') as f:
             for el in v:

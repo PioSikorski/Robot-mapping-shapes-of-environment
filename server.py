@@ -4,7 +4,6 @@ import time
 
 import control
 from imu import Imu
-from control import handle_imu
 from enkoder import Encoder
 from control import Move
 from consts import PI_IP_ADDRESS, SERVER_PORT, LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN
@@ -59,12 +58,11 @@ if __name__=="__main__":
         enkoder = Encoder(LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN)
         imu = Imu('y')
         imu.calibrate()
-        angle = 0
         x = 0
 
         while True:
-            angle = handle_imu(angle, imu)
-            enkoder.update(angle)
+            imu.update_angle()
+            enkoder.update(imu.angle)
             time.sleep(0.01)
             if x%500 == 0: 
                 enkoder.show_state()
