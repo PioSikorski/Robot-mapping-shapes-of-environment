@@ -40,6 +40,7 @@ if __name__ == "__main__":
                     [
                         (enkoder.left_wheel.x[-1] + enkoder.right_wheel.x[-1])/2,
                         (enkoder.left_wheel.y[-1] + enkoder.right_wheel.y[-1])/2,
+                        imu.angle,
                         left_dist_sensor.measure(),
                         middle_dist_sensor.measure(),
                         right_dist_sensor.measure()
@@ -51,6 +52,8 @@ if __name__ == "__main__":
             x += 1
 
     except KeyboardInterrupt:
+        server.stop_serving()
+        GPIO.cleanup()
         if measures:
             with open('res.csv', 'w', newline='') as f:
                 print('no pisze')
@@ -61,4 +64,4 @@ if __name__ == "__main__":
         else:
             print('nie ma')
 
-        server.stop_serving()
+
