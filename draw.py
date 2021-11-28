@@ -34,13 +34,15 @@ def draw(input_data: list):
     left_xs, left_ys = [], []
     f_left_xs, f_left_ys = [], []
     middle_xs, middle_ys = [], []
+    f_middle_xs, f_middle_ys = [], []
     right_xs, right_ys = [], []
+    f_right_xs, f_right_ys = [], []
     input_data = input_data[1:]
     i = 0
     for measure in input_data:
-        i += 1
-        if i > 88:
-            break
+        # i += 1
+        # if i > 88:
+        #     break
         robot_x, robot_y, robot_angle, left, middle, right = [float(x) for x in measure]
         
         #for robot_x, robot_y, robot_angle, left, middle, right in measure:
@@ -69,11 +71,15 @@ def draw(input_data: list):
     for i in range(6, len(left_xs)):
         f_left_xs.append((left_ys[i-6]+left_ys[i-5]+left_xs[i-4]+left_xs[i-3]+left_xs[i-2]+left_xs[i-1]+left_xs[i])/7)
         f_left_ys.append((left_ys[i-6]+left_ys[i-5]+left_ys[i-4]+left_ys[i-3]+left_ys[i-2]+left_ys[i-1]+left_ys[i])/7)
+        f_middle_xs.append((middle_ys[i-6]+middle_ys[i-5]+middle_xs[i-4]+middle_xs[i-3]+middle_xs[i-2]+middle_xs[i-1]+middle_xs[i])/7)
+        f_middle_ys.append((middle_ys[i-6]+middle_ys[i-5]+middle_ys[i-4]+middle_ys[i-3]+middle_ys[i-2]+middle_ys[i-1]+middle_ys[i])/7)
+        f_right_xs.append((right_ys[i-6]+right_ys[i-5]+right_xs[i-4]+right_xs[i-3]+right_xs[i-2]+right_xs[i-1]+right_xs[i])/7)
+        f_right_ys.append((right_ys[i-6]+right_ys[i-5]+right_ys[i-4]+right_ys[i-3]+right_ys[i-2]+right_ys[i-1]+right_ys[i])/7)
     plt.plot(robot_xs, robot_ys, 'r.')
-    plt.plot(left_xs, left_ys, 'blue', linewidth=0.1, marker='.')
+    #plt.plot(left_xs, left_ys, 'blue', linewidth=0.1, marker='.')
     plt.plot(f_left_xs, f_left_ys, 'green', linewidth=0.1, marker='.')
-    plt.plot(middle_xs, middle_ys, 'cyan', linewidth=0.1, marker='.')
-    plt.plot(right_xs, right_ys, 'purple', linewidth=0.1, marker='.')
+    plt.plot(f_middle_xs, f_middle_ys, 'cyan', linewidth=0.1, marker='.')
+    plt.plot(f_right_xs, f_right_ys, 'purple', linewidth=0.1, marker='.')
     plt.show()
 
 
