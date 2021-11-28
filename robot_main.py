@@ -56,11 +56,13 @@ if __name__ == "__main__":
         GPIO.cleanup()
         if measures:
             with open('res.csv', 'w', newline='') as f:
-                print('no pisze')
+                print('Zapisywanie')
+                l = len(measures)
                 w = csv.writer(f)
                 w.writerow(['robot_x', 'robot_y', 'angle', 'left', 'middle', 'right'])
-                for measure in measures:
+                for i, measure in enumerate(measures):
                     w.writerow(measure)
+                    print(f'{i}/{l} written')
         else:
             print('nie ma')
 
