@@ -33,9 +33,14 @@ if __name__ == "__main__":
         x = 0
 
         while True:
+            print('a')
             imu.update_angle()
+            print('b')
             enkoder.update(imu.angle)
+            print('c')
+            print(x)
             if x % 50 == 0:
+                print('append')
                 measures.append(
                     [
                         (enkoder.left_wheel.x[-1] + enkoder.right_wheel.x[-1])/2,
