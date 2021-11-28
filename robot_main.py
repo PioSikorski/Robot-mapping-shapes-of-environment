@@ -58,7 +58,7 @@ if __name__ == "__main__":
             with open('res.csv', 'w', newline='') as f:
                 print('no pisze')
                 w = csv.writer(f)
-                w.writerow(['robot_x', 'robot_y', 'left', 'middle', 'right'])
+                w.writerow(['robot_x', 'robot_y', 'angle', 'left', 'middle', 'right'])
                 for measure in measures:
                     w.writerow(measure)
         else:

@@ -26,16 +26,17 @@ def get_y_part(distance: float, angle: float) -> float:
     return sin(angle_in_radians) * distance
 
 
-def draw(input_data -> list):
+def draw(input_data: list):
     """
     @param input_data: list in format [[robot_x, robot_y, robot_angle, left, middle, right], ...]
     """
     robot_xs, robot_ys = [], []
-    left_xs, right_ys = [], []
+    left_xs, left_ys = [], []
     middle_xs, middle_ys = [], []
     right_xs, right_ys = [], []
-
+    input_data = input_data[1:]
     for measure in input_data:
+        print(measure)
         for robot_x, robot_y, robot_angle, left, middle, right in measure:
             robot_xs.append(robot_x)
             robot_ys.append(robot_y)
@@ -61,13 +62,16 @@ def draw(input_data -> list):
     plt.plot(right_xs, right_ys)
     plt.show()
 
-def read_data(file_path:str ) -> list:
+
+def read_data(file_path: str) -> list:
     data = []
     with open(file_path, 'r') as f:
         r = csv.reader(f)
         for line in r:
             # process each line
-            print(line)
+            data.append(line)
+    return data
 
-if __name__=="__main__":
-    draw()
+if __name__ == "__main__":
+    input_data = read_data('res.csv')
+    draw(input_data)
