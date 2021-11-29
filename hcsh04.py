@@ -17,20 +17,32 @@ class DistanceSensor:
         GPIO.setup(self.trig, GPIO.OUT)
         GPIO.setup(self.echo, GPIO.IN)
 
-    def measure(self) -> float:
+    def measure(self):
+    # set Trigger to HIGH
         GPIO.output(self.trig, True)
+ 
+    # set Trigger after 0.01ms to LOW
         time.sleep(0.00001)
         GPIO.output(self.trig, False)
         trigger_time = time.time()
-        while True:
-            #GPIO.input(self.echo) == 0:
+        StartTime = time.time()
+        StopTime = time.time()
+ 
+    # save StartTime
+        while GPIO.input(self.echo) == 0:
+            StartTime = time.time()
             if (time.time() - trigger_time) > MAX_TIME_TO_RETURN:
                 return 100000
-            if GPIO.input(self.echo) == 1:
-                stop_time = time.time()
-                break
-        time_dist = stop_time - trigger_time
-        distance = (time_dist * SOUND_SPEED) / 2
+    # save time of arrival
+        while GPIO.input(self.echo) == 1:
+            StopTime = time.time()
+ 
+    # time difference between start and arrival
+        TimeElapsed = StopTime - StartTime
+    # multiply with the sonic speed (34300 cm/s)
+    # and divide by 2, because there and back
+        distance = (TimeElapsed * 34300) / 2
+ 
         return distance
 
 if __name__ == "__main__":
@@ -42,6 +54,7 @@ if __name__ == "__main__":
             print(left_dist_sensor.measure() + LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE)
             print(middle_dist_sensor.measure() + MIDDLE_SENSOR_DISTANCE_FROM_ROBOT_CENTRE)
             print(right_dist_sensor.measure() + RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE)
+            time.sleep(0.5)
     except KeyboardInterrupt:
         exit()
         GPIO.cleanup()
