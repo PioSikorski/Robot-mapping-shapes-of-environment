@@ -39,8 +39,9 @@ if __name__ == "__main__":
         middle_dist_sensor = DistanceSensor(5, 0)
         right_dist_sensor = DistanceSensor(11, 9)
         while True:
-            left_dist_sensor.measure() + LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE,
-            middle_dist_sensor.measure() + MIDDLE_SENSOR_DISTANCE_FROM_ROBOT_CENTRE,
-            right_dist_sensor.measure() + RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE
+            print(left_dist_sensor.measure() + LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE)
+            print(middle_dist_sensor.measure() + MIDDLE_SENSOR_DISTANCE_FROM_ROBOT_CENTRE)
+            print(right_dist_sensor.measure() + RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE)
     except KeyboardInterrupt:
-        sys.exit()
+        exit()
+        GPIO.cleanup()
