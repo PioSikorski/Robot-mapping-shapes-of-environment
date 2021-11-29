@@ -2,11 +2,7 @@ import csv
 from math import cos, pi, sin
 
 from matplotlib import pyplot as plt
-
-LEFT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE = 30  # degrees
-MIDDLE_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE = 0  # degrees
-RIGHT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE = -30  # degrees
-
+from consts import LEFT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE, MIDDLE_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE, RIGHT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE
 
 def get_x_part(distance: float, angle: float) -> float:
     """

@@ -67,7 +67,7 @@ if __name__ == "__main__":
                 w.writerow(['robot_x', 'robot_y', 'angle', 'left', 'middle', 'right'])
                 for i, measure in enumerate(measures):
                     w.writerow(measure)
-                    print(f'{i}/{l} written')
+                    print(f'{i}/{l-1} written')
         else:
             print('nie ma')
 
