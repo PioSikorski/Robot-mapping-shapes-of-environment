@@ -5,7 +5,7 @@ import time
 
 import RPi.GPIO as GPIO
 
-from consts import PI_IP_ADDRESS, SERVER_PORT, LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN
+from consts import PI_IP_ADDRESS, SERVER_PORT, LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN, LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE, MIDDLE_SENSOR_DISTANCE_FROM_ROBOT_CENTRE, RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE, DEBUG
 from enkoder import Encoder
 from hcsh04 import DistanceSensor
 from imu import Imu
@@ -46,9 +46,9 @@ if __name__ == "__main__":
                         (enkoder.left_wheel.x[-1] + enkoder.right_wheel.x[-1])/2,
                         (enkoder.left_wheel.y[-1] + enkoder.right_wheel.y[-1])/2,
                         imu.angle,
-                        left_dist_sensor.measure(),
-                        middle_dist_sensor.measure(),
-                        right_dist_sensor.measure()
+                        left_dist_sensor.measure() + LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE,
+                        middle_dist_sensor.measure() + MIDDLE_SENSOR_DISTANCE_FROM_ROBOT_CENTRE,
+                        right_dist_sensor.measure() + RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE
                     ]
                 )
             if x % 500 == 0:
@@ -67,7 +67,7 @@ if __name__ == "__main__":
                 w.writerow(['robot_x', 'robot_y', 'angle', 'left', 'middle', 'right'])
                 for i, measure in enumerate(measures):
                     w.writerow(measure)
-                    print(f'{i}/{l} written')
+                    print(f'{i}/{l-1} written')
         else:
             print('nie ma')
 

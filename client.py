@@ -14,7 +14,7 @@ messages = {
 
 if __name__=="__main__":
     s = socket.socket()
-    s.connect((PI_IP_ADDRESS,SERVER_PORT))
+    s.connect((PI_IP_ADDRESS, SERVER_PORT))
 
     screen = curses.initscr()
     curses.noecho()
