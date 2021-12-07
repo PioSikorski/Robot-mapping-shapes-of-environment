@@ -42,7 +42,7 @@ if __name__ == "__main__":
             if x % 60 == 0:
                 print('append')
                 measures.append(
-                    [s
+                    [
                         (enkoder.left_wheel.x[-1] + enkoder.right_wheel.x[-1])/2,
                         (enkoder.left_wheel.y[-1] + enkoder.right_wheel.y[-1])/2,
                         imu.angle,
