@@ -20,7 +20,7 @@ ENCODER_GEAR_NUMBER_OF_TEETH = 12
 
 
 # SERVER
-PI_IP_ADDRESS = "192.168.187.17" # raspberry pi IP address
+PI_IP_ADDRESS = "192.168.1.17" # raspberry pi IP address
 HOST_IP_ADDRESS = "192.168.187.16" # host IP address
 SERVER_PORT = 5050
 
