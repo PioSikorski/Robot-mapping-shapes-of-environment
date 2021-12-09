@@ -18,8 +18,8 @@ if __name__ == "__main__":
     measures = []
     try:
         # sensors should be initialized before operator is able to move robot
-        #imu = Imu('y')
-        #imu.calibrate()
+        imu = Imu('y')
+        imu.calibrate()
 
         enkoder = Encoder(LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN)
 
@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
         while True:
             print('a')
-            #imu.update_angle()
+            imu.update_angle()
             print('b')
             enkoder.update(imu.angle)
             print('c')
@@ -45,7 +45,7 @@ if __name__ == "__main__":
                     [
                         (enkoder.left_wheel.x[-1] + enkoder.right_wheel.x[-1])/2,
                         (enkoder.left_wheel.y[-1] + enkoder.right_wheel.y[-1])/2,
-                        #imu.angle,
+                        imu.angle,
                         left_dist_sensor.measure() + LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE,
                         middle_dist_sensor.measure() + MIDDLE_SENSOR_DISTANCE_FROM_ROBOT_CENTRE,
                         right_dist_sensor.measure() + RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE
