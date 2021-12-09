@@ -33,11 +33,8 @@ if __name__ == "__main__":
         x = 0
 
         while True:
-            print('a')
             imu.update_angle()
-            print('b')
             enkoder.update(imu.angle)
-            print('c')
             print(x)
             if x % 60 == 0:
                 print('append')
