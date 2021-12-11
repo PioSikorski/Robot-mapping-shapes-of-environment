@@ -18,30 +18,24 @@ class DistanceSensor:
         GPIO.setup(self.echo, GPIO.IN)
 
     def measure(self):
-    # set Trigger to HIGH
-        GPIO.output(self.trig, True)
+    
+        GPIO.output(self.trig, True) # set Trigger to HIGH
  
-    # set Trigger after 0.01ms to LOW
-        time.sleep(0.00001)
+        time.sleep(0.00001) # set Trigger after 0.01ms to LOW
         GPIO.output(self.trig, False)
         trigger_time = time.time()
         StartTime = time.time()
         StopTime = time.time()
  
-    # save StartTime
         while GPIO.input(self.echo) == 0:
-            StartTime = time.time()
+            StartTime = time.time() # save StartTime
             if (time.time() - trigger_time) > MAX_TIME_TO_RETURN:
                 return 100000
-    # save time of arrival
         while GPIO.input(self.echo) == 1:
-            StopTime = time.time()
+            StopTime = time.time() # save time of arrival
  
-    # time difference between start and arrival
-        TimeElapsed = StopTime - StartTime
-    # multiply with the sonic speed (34300 cm/s)
-    # and divide by 2, because there and back
-        distance = (TimeElapsed * 34300) / 2
+        TimeElapsed = StopTime - StartTime # time difference between start and arrival
+        distance = (TimeElapsed * 34300) / 2 # multiply with the sonic speed (34300 cm/s) and divide by 2
  
         return distance
 
