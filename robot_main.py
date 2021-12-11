@@ -17,15 +17,15 @@ GPIO.setwarnings(False)
 if __name__ == "__main__":
     measures = []
     try:
+        left_dist_sensor = DistanceSensor(6, 13)
+        middle_dist_sensor = DistanceSensor(5, 0)
+        right_dist_sensor = DistanceSensor(11, 9)
+        
         # sensors should be initialized before operator is able to move robot
         imu = Imu('y')
         imu.calibrate()
 
         enkoder = Encoder(LEFT_ENCODER_SENSOR_PIN, RIGHT_ENCODER_SENSOR_PIN)
-
-        left_dist_sensor = DistanceSensor(6, 13)
-        middle_dist_sensor = DistanceSensor(5, 0)
-        right_dist_sensor = DistanceSensor(11, 9)
 
         server = Server()
         server.serve()

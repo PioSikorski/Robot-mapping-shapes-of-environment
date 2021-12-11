@@ -21,7 +21,6 @@ class Motor():
     def moveF(self,x=18):
         GPIO.output(self.In1,GPIO.HIGH)
         GPIO.output(self.In2,GPIO.LOw)
-        
         self.pwm.ChangeDutyCycle(x)
 
     def moveB(self,x=18):
@@ -36,6 +35,7 @@ if __name__=="__main__":
     try:
         motor_left = Motor(14, 15, 18)
         motor_right = Motor(25,8,7)
+
         motor_left.moveF()
         motor_right.moveF()
         time.sleep(5)
