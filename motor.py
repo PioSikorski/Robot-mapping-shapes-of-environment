@@ -34,14 +34,14 @@ class Motor():
 
 if __name__=="__main__":
     try:
-        motor1 = Motor(14, 15, 18)
-        motor2 = Motor(25,8,7)
-        motor1.moveF()
-        motor2.moveF()
+        motor_left = Motor(14, 15, 18)
+        motor_right = Motor(25,8,7)
+        motor_left.moveF()
+        motor_right.moveF()
         time.sleep(5)
-        motor1.stop()
-        motor2.stop()
+        motor_left.stop()
+        motor_right.stop()
 
     except KeyboardInterrupt:
-        motor1.stop()
-        motor2.stop()
+        motor_left.stop()
+        motor_right.stop()
