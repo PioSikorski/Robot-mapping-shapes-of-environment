@@ -19,7 +19,6 @@ class Imu(FaBo9Axis_MPU9250.MPU9250):
             error += self.measure()
         self.calibration_parameters = error / iterations
 
-        #print(self.calibration_parameters)
     def measure(self):
         return self.readGyro()[self.axis] - self.calibration_parameter
 
