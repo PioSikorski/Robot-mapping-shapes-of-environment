@@ -1,7 +1,6 @@
 import time
 
 import RPi.GPIO as GPIO
-from consts import LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE, MIDDLE_SENSOR_DISTANCE_FROM_ROBOT_CENTRE, RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE
 
 SOUND_SPEED = 34300
 MAX_SENSOR_SUPPORT = 200
@@ -45,9 +44,9 @@ if __name__ == "__main__":
         middle_dist_sensor = DistanceSensor(5, 0)
         right_dist_sensor = DistanceSensor(11, 9)
         while True:
-            print(left_dist_sensor.measure() + LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE)
-            print(middle_dist_sensor.measure() + MIDDLE_SENSOR_DISTANCE_FROM_ROBOT_CENTRE)
-            print(right_dist_sensor.measure() + RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE)
+            print(left_dist_sensor.measure())
+            print(middle_dist_sensor.measure())
+            print(right_dist_sensor.measure())
             time.sleep(0.5)
     except KeyboardInterrupt:
         exit()
