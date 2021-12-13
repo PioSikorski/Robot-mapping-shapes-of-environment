@@ -2,7 +2,7 @@ import csv
 from math import cos, pi, sin
 
 from matplotlib import pyplot as plt
-from consts import LEFT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE, MIDDLE_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE, RIGHT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE
+from consts import LEFT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE, LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE_X, LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE_Y, MIDDLE_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE, MIDDLE_SENSOR_DISTANCE_FROM_ROBOT_CENTRE, RIGHT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE, RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE_X, RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE_Y
 
 def get_x_part(distance: float, angle: float) -> float:
     """
@@ -49,30 +49,30 @@ def draw(input_data: list):
 
         if left < 200:
             left_xs.append(robot_x +
-                            get_x_part(left, robot_angle + LEFT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
+                            get_x_part(left + LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE_X, robot_angle + LEFT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
             left_ys.append(robot_y +
-                            get_y_part(left, robot_angle + LEFT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
+                            get_y_part(left + LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE_Y, robot_angle + LEFT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
 
         if middle < 200:
             middle_xs.append(robot_x +
                                 get_x_part(middle, robot_angle + MIDDLE_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
             middle_ys.append(robot_y +
-                                get_y_part(middle, robot_angle + MIDDLE_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
+                                get_y_part(middle + MIDDLE_SENSOR_DISTANCE_FROM_ROBOT_CENTRE, robot_angle + MIDDLE_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
         if right < 200:
             right_xs.append(robot_x +
-                            get_x_part(right, robot_angle + RIGHT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
+                            get_x_part(right + RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE_X, robot_angle + RIGHT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
             right_ys.append(robot_y +
-                            get_y_part(right, robot_angle + RIGHT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
+                            get_y_part(right + RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE_Y, robot_angle + RIGHT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
 
-    for i in range(3, len(left_xs)):
-        f_left_xs.append((left_xs[i-2]+left_xs[i-1]+left_xs[i])/3)
-        f_left_ys.append((left_ys[i-2]+left_ys[i-1]+left_ys[i])/3)
-    for i in range(3, len(middle_xs)):
-        f_middle_xs.append((middle_xs[i-2]+middle_xs[i-1]+middle_xs[i])/3)
-        f_middle_ys.append((middle_ys[i-2]+middle_ys[i-1]+middle_ys[i])/3)
-    for i in range(3, len(right_xs)):
-        f_right_xs.append((right_xs[i-2]+right_xs[i-1]+right_xs[i])/3)
-        f_right_ys.append((right_ys[i-2]+right_ys[i-1]+right_ys[i])/3)
+    for i in range(5, len(left_xs)):
+        f_left_xs.append((left_xs[i-4]+left_xs[i-3]+left_xs[i-2]+left_xs[i-1]+left_xs[i])/5)
+        f_left_ys.append((left_ys[i-4]+left_ys[i-3]+left_ys[i-2]+left_ys[i-1]+left_ys[i])/5)
+    for i in range(5, len(middle_xs)):
+        f_middle_xs.append((middle_xs[i-4]+middle_xs[i-3]+middle_xs[i-2]+middle_xs[i-1]+middle_xs[i])/5)
+        f_middle_ys.append((middle_ys[i-4]+middle_ys[i-3]+middle_ys[i-2]+middle_ys[i-1]+middle_ys[i])/5)
+    for i in range(5, len(right_xs)):
+        f_right_xs.append((right_xs[i-4]+right_xs[i-3]+right_xs[i-2]+right_xs[i-1]+right_xs[i])/5)
+        f_right_ys.append((right_ys[i-4]+right_ys[i-3]+right_ys[i-2]+right_ys[i-1]+right_ys[i])/5)
     plt.plot(robot_xs, robot_ys, 'r.')
     #plt.plot(left_xs, left_ys, 'blue', linewidth=0.1, marker='.')
     plt.plot(f_left_xs, f_left_ys, 'green', linewidth=0.1, marker='.')

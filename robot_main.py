@@ -43,9 +43,9 @@ if __name__ == "__main__":
                         (enkoder.left_wheel.x[-1] + enkoder.right_wheel.x[-1])/2,
                         (enkoder.left_wheel.y[-1] + enkoder.right_wheel.y[-1])/2,
                         imu.angle,
-                        left_dist_sensor.measure() + LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE,
-                        middle_dist_sensor.measure() + MIDDLE_SENSOR_DISTANCE_FROM_ROBOT_CENTRE,
-                        right_dist_sensor.measure() + RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE
+                        left_dist_sensor.measure(),
+                        middle_dist_sensor.measure(),
+                        right_dist_sensor.measure()
                     ]
                 )
             if x % 500 == 0:
