@@ -20,7 +20,7 @@ class Motor():
 
     def moveF(self,x=18):
         GPIO.output(self.In1,GPIO.HIGH)
-        GPIO.output(self.In2,GPIO.LOw)
+        GPIO.output(self.In2,GPIO.LOW)
         self.pwm.ChangeDutyCycle(x)
 
     def moveB(self,x=18):
