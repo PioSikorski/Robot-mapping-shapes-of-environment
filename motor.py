@@ -34,7 +34,7 @@ class Motor():
 if __name__=="__main__":
     try:
         motor_left = Motor(14, 15, 18)
-        motor_right = Motor(25,8,7)
+        motor_right = Motor(25, 8, 7)
 
         motor_left.moveF()
         motor_right.moveF()
