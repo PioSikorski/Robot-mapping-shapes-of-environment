@@ -18,12 +18,12 @@ class Motor():
         self.pwm = GPIO.PWM(self.Ena, 100)
         self.pwm.start(0)
 
-    def moveF(self,x=22):
+    def moveF(self,x=30):
         GPIO.output(self.In1,GPIO.HIGH)
         GPIO.output(self.In2,GPIO.LOW)
         self.pwm.ChangeDutyCycle(x)
 
-    def moveB(self,x=22):
+    def moveB(self,x=30):
         GPIO.output(self.In1,GPIO.LOW)
         GPIO.output(self.In2,GPIO.HIGH)
         self.pwm.ChangeDutyCycle(x)
