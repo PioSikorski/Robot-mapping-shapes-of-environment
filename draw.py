@@ -49,20 +49,20 @@ def draw(input_data: list):
 
         if left < 200:
             left_xs.append(robot_x +
-                            get_x_part(left + LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE_X, robot_angle + LEFT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
+                            get_x_part(left, robot_angle + LEFT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
             left_ys.append(robot_y +
-                            get_y_part(left + LEFT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE_Y, robot_angle + LEFT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
+                            get_y_part(left, robot_angle + LEFT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
 
         if middle < 200:
             middle_xs.append(robot_x +
                                 get_x_part(middle, robot_angle + MIDDLE_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
             middle_ys.append(robot_y +
-                                get_y_part(middle + MIDDLE_SENSOR_DISTANCE_FROM_ROBOT_CENTRE, robot_angle + MIDDLE_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
+                                get_y_part(middle, robot_angle + MIDDLE_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
         if right < 200:
             right_xs.append(robot_x +
-                            get_x_part(right + RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE_X, robot_angle + RIGHT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
+                            get_x_part(right, robot_angle + RIGHT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
             right_ys.append(robot_y +
-                            get_y_part(right + RIGHT_SENSOR_DISTANCE_FROM_ROBOT_CENTRE_Y, robot_angle + RIGHT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
+                            get_y_part(right, robot_angle + RIGHT_DISTANCE_SENSOR_ANGLE_FROM_ROBOT_CENTRE))
 
     for i in range(5, len(left_xs)):
         f_left_xs.append((left_xs[i-4]+left_xs[i-3]+left_xs[i-2]+left_xs[i-1]+left_xs[i])/5)
@@ -76,8 +76,8 @@ def draw(input_data: list):
     plt.plot(robot_xs, robot_ys, 'r.')
     #plt.plot(left_xs, left_ys, 'blue', linewidth=0.1, marker='.')
     plt.plot(f_left_xs, f_left_ys, 'green', linewidth=0.1, marker='.')
-    plt.plot(f_middle_xs, f_middle_ys, 'cyan', linewidth=0.1, marker='.')
-    plt.plot(f_right_xs, f_right_ys, 'purple', linewidth=0.1, marker='.')
+    plt.plot(middle_xs, middle_ys, 'cyan', linewidth=0.1, marker='.')
+    plt.plot(right_xs, right_ys, 'purple', linewidth=0.1, marker='.')
     plt.legend(["Robot", "SENSOR L", "SENSOR M", "SENSOR R"])
     plt.show()
 
