@@ -21,12 +21,12 @@ class Move():
         self.motor_left.moveB()
 
     def movL(self):
-        self.motor_right.moveF()
-        self.motor_left.stop()
-
-    def movR(self):
         self.motor_left.moveF()
         self.motor_right.stop()
+
+    def movR(self):
+        self.motor_right.moveF()
+        self.motor_left.stop()
 
     def stop(self):
         self.motor_right.stop()
